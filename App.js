@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Text, ActivityIndicator } from 'react-native'
+import { SafeAreaView, View, StyleSheet, Text, ActivityIndicator, Platform } from 'react-native'
 // Import axios, BASE_URL, dan API_KEY
 import axios from 'axios'
 import { BASE_URL, API_KEY } from './src/constant'
@@ -52,17 +52,20 @@ const App = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <WeatherSearch searchWeather={searchWeather} />
       {/* Menggunakan function renderComponent di sini */}
       <View style={styles.margintTop20}>{renderComponent()}</View>
-    </View>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    flex: 1,
+    backgroundColor: '#fff',
+    marginHorizontal: 20,
+    paddingTop: Platform.OS === 'android' ? 40 : 0 // Menyesuaikan padding untuk SafeArea pada Android
   },
 })
 
